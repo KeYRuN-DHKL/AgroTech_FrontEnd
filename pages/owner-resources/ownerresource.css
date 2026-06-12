@@ -286,9 +286,13 @@ textarea::placeholder { color: #475569; }
 }
 
 .resource-desc {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  line-height: 1.5;
+  margin-bottom: 1rem;
   display: -webkit-box;
-  -webkit-box-orient: vertical;
-  line-clamp: 2;
   -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-clamp: 2;      
   overflow: hidden;
 }
