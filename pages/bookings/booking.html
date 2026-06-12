@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Bookings — AgroTech</title>
+  <link rel="stylesheet" href="../../shared/navbar.css" />
+  <link rel="stylesheet" href="booking.css" />
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <main class="main">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">My Bookings</h1>
+        <p class="page-subtitle">Track all your resource booking requests</p>
+      </div>
+      <div class="filter-wrap">
+        <select id="status-filter" onchange="filterBookings()">
+          <option value="">All Statuses</option>
+          <option value="1">Pending</option>
+          <option value="2">Approved</option>
+          <option value="3">Rejected</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="loading" class="loading-state">
+      <div class="spinner"></div>
+      <p>Loading bookings...</p>
+    </div>
+
+    <div id="error-state" class="empty-state hidden">
+      <span class="empty-icon">⚠️</span>
+      <p id="error-text">Failed to load bookings.</p>
+      <button class="btn-primary" onclick="loadBookings()">Try Again</button>
+    </div>
+
+    <div id="empty-state" class="empty-state hidden">
+      <span class="empty-icon">📅</span>
+      <p>No bookings found.</p>
+      <a href="/pages/resources/resource.html" class="btn-primary" style="text-decoration:none; margin-top:0.5rem;">Browse Resources</a>
+    </div>
+
+    <div id="bookings-list" class="bookings-list hidden"></div>
+  </main>
+
+  <script src="../../shared/auth.js"></script>
+  <script src="../../shared/api.js"></script>
+  <script src="../../shared/navbar.js"></script>
+  <script src="booking.js"></script>
+</body>
+</html>

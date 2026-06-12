@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Browse Resources — AgroTech</title>
+  <link rel="stylesheet" href="../../shared/navbar.css" />
+  <link rel="stylesheet" href="resource.css" />
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <main class="main">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Agricultural Resources</h1>
+        <p class="page-subtitle">Browse and book tools available near you</p>
+      </div>
+      <div class="search-wrap">
+        <input type="text" id="search-input" placeholder="🔍 Search resources..." oninput="filterResources()" />
+      </div>
+    </div>
+
+    <div id="loading" class="loading-state">
+      <div class="spinner"></div>
+      <p>Loading resources...</p>
+    </div>
+
+    <div id="error-state" class="empty-state hidden">
+      <span class="empty-icon">⚠️</span>
+      <p id="error-text">Failed to load resources.</p>
+      <button class="btn-primary" onclick="loadResources()">Try Again</button>
+    </div>
+
+    <div id="empty-state" class="empty-state hidden">
+      <span class="empty-icon">🚜</span>
+      <p>No resources found.</p>
+    </div>
+
+    <div id="resources-grid" class="resources-grid hidden"></div>
+  </main>
+
+  <!-- Booking Modal -->
+  <div id="booking-modal" class="modal-overlay hidden">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Book Resource</h3>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="booking-resource-name" id="modal-resource-name"></p>
+        <div id="booking-error" class="alert alert-error hidden"></div>
+        <div id="booking-success" class="alert alert-success hidden"></div>
+        <form id="booking-form" novalidate>
+          <div class="form-group">
+            <label>Start Date & Time</label>
+            <input type="datetime-local" id="start-time" />
+            <span class="field-error" id="start-error"></span>
+          </div>
+          <div class="form-group">
+            <label>End Date & Time</label>
+            <input type="datetime-local" id="end-time" />
+            <span class="field-error" id="end-error"></span>
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn-secondary" onclick="closeModal()">Cancel</button>
+            <button type="submit" class="btn-primary" id="book-btn">
+              <span id="book-btn-text">Confirm Booking</span>
+              <span id="book-spinner" class="spinner-sm hidden"></span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../shared/auth.js"></script>
+  <script src="../../shared/api.js"></script>
+  <script src="../../shared/navbar.js"></script>
+  <script src="resource.js"></script>
+</body>
+</html>

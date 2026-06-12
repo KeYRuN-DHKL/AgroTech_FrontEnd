@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Users — AgroTech Admin</title>
+  <link rel="stylesheet" href="../../shared/navbar.css" />
+  <link rel="stylesheet" href="adminuser.css" />
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <main class="main">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Users</h1>
+        <p class="page-subtitle">Manage all registered platform users</p>
+      </div>
+      <div class="header-actions">
+        <div class="search-wrap">
+          <input type="text" id="search-input" placeholder="🔍 Search by name..." oninput="filterUsers()" />
+        </div>
+        <select id="role-filter" onchange="filterUsers()">
+          <option value="">All Roles</option>
+          <option value="Farmer">Farmer</option>
+          <option value="Owner">Owner</option>
+          <option value="Admin">Admin</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="loading" class="loading-state">
+      <div class="spinner"></div>
+      <p>Loading users...</p>
+    </div>
+
+    <div id="error-state" class="empty-state hidden">
+      <span class="empty-icon">⚠️</span>
+      <p id="error-text">Failed to load users.</p>
+      <button class="btn-primary" onclick="loadUsers()">Try Again</button>
+    </div>
+
+    <div id="empty-state" class="empty-state hidden">
+      <span class="empty-icon">👥</span>
+      <p>No users found.</p>
+    </div>
+
+    <div id="table-wrap" class="table-wrap hidden">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Role</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="users-tbody"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- Delete Confirm Modal -->
+  <div id="delete-modal" class="modal-overlay hidden">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Delete User</h3>
+        <button class="modal-close" onclick="closeDeleteModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="confirm-text">Are you sure you want to delete <strong id="delete-name"></strong>? This action cannot be undone.</p>
+        <div class="modal-actions">
+          <button class="btn-secondary" onclick="closeDeleteModal()">Cancel</button>
+          <button class="btn-danger" id="confirm-delete-btn" onclick="confirmDelete()">
+            <span id="delete-btn-text">Delete</span>
+            <span id="delete-spinner" class="spinner-sm hidden"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../shared/auth.js"></script>
+  <script src="../../shared/api.js"></script>
+  <script src="../../shared/navbar.js"></script>
+  <script src="adminuser.js"></script>
+</body>
+</html>

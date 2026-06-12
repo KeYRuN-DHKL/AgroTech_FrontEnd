@@ -1,0 +1,58 @@
+# Operating System Files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.directory
+
+# IDE and Editor Files
+.vscode/
+.idea/
+.sublime-workspace
+.sublime-project
+*.iml
+*.iws
+*.ipr
+
+# Node.js 
+node_modules/
+package-lock.json
+yarn.lock
+npm-debug.log
+yarn-error.log
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# Temporary Files
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# System and IDE Caches
+.cache/
+.eslintcache
+.vscode-test
+
+# Build Outputs 
+dist/
+build/
+out/
+
+# Logs
+*.log
+logs/
+
+# Local Testing Files
+test-results/
+coverage/
+
+# OS-specific
+.AppleDouble/
+.LSOverride/
+.TemporaryItems/
+$RECYCLE.BIN/

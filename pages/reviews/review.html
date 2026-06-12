@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reviews — AgroTech</title>
+  <link rel="stylesheet" href="../../shared/navbar.css" />
+  <link rel="stylesheet" href="review.css" />
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <main class="main">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Reviews</h1>
+        <p class="page-subtitle">See what farmers are saying about resources</p>
+      </div>
+      <button class="btn-primary" onclick="openReviewModal()">✍️ Write a Review</button>
+    </div>
+
+    <div id="loading" class="loading-state">
+      <div class="spinner"></div>
+      <p>Loading reviews...</p>
+    </div>
+
+    <div id="error-state" class="empty-state hidden">
+      <span class="empty-icon">⚠️</span>
+      <p id="error-text">Failed to load reviews.</p>
+      <button class="btn-primary" onclick="loadReviews()">Try Again</button>
+    </div>
+
+    <div id="empty-state" class="empty-state hidden">
+      <span class="empty-icon">⭐</span>
+      <p>No reviews yet. Be the first to leave one!</p>
+    </div>
+
+    <div id="reviews-list" class="reviews-list hidden"></div>
+  </main>
+
+  <!-- Review Modal -->
+  <div id="review-modal" class="modal-overlay hidden">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Write a Review</h3>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div id="review-error" class="alert alert-error hidden"></div>
+        <div id="review-success" class="alert alert-success hidden"></div>
+        <form id="review-form" novalidate>
+          <div class="form-group">
+            <label>Resource ID</label>
+            <input type="number" id="resource-id" placeholder="Enter resource ID" min="1" />
+            <span class="field-error" id="resource-error"></span>
+          </div>
+          <div class="form-group">
+            <label>Rating</label>
+            <div class="star-rating" id="star-rating">
+              <span class="star" data-val="1" onclick="setRating(1)">★</span>
+              <span class="star" data-val="2" onclick="setRating(2)">★</span>
+              <span class="star" data-val="3" onclick="setRating(3)">★</span>
+              <span class="star" data-val="4" onclick="setRating(4)">★</span>
+              <span class="star" data-val="5" onclick="setRating(5)">★</span>
+            </div>
+            <span class="field-error" id="rating-error"></span>
+          </div>
+          <div class="form-group">
+            <label>Comment <span class="optional">(optional)</span></label>
+            <textarea id="comment" placeholder="Share your experience..." rows="4" maxlength="500"></textarea>
+            <span class="char-count" id="char-count">0 / 500</span>
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn-secondary" onclick="closeModal()">Cancel</button>
+            <button type="submit" class="btn-primary" id="review-btn">
+              <span id="review-btn-text">Submit Review</span>
+              <span id="review-spinner" class="spinner-sm hidden"></span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../shared/auth.js"></script>
+  <script src="../../shared/api.js"></script>
+  <script src="../../shared/navbar.js"></script>
+  <script src="review.js"></script>
+</body>
+</html>

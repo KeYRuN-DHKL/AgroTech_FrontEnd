@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register — AgroTech</title>
+  <link rel="stylesheet" href="register.css" />
+</head>
+<body>
+  <div class="register-wrapper">
+    <div class="register-card">
+      <!-- Header -->
+      <div class="card-header">
+        <a href="/pages/login/login.html" class="back-link">← Back to login</a>
+        <div class="brand">
+          <span>🌾</span>
+          <span class="brand-name">AgroTech</span>
+        </div>
+        <h2 class="form-title">Create your account</h2>
+        <p class="form-subtitle">Join thousands of farmers and resource owners</p>
+      </div>
+
+      <div id="error-msg" class="alert alert-error hidden"></div>
+      <div id="success-msg" class="alert alert-success hidden"></div>
+
+      <form id="register-form" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" placeholder="Ram Bahadur Thapa" />
+            <span class="field-error" id="fullName-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" placeholder="98XXXXXXXX" maxlength="10" />
+            <span class="field-error" id="phone-error"></span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="you@example.com" />
+          <span class="field-error" id="email-error"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="input-password-wrap">
+            <input type="password" id="password" placeholder="Min 6 chars, letters & numbers" />
+            <button type="button" class="toggle-pw" onclick="togglePassword('password')">👁</button>
+          </div>
+          <span class="field-error" id="password-error"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <div class="input-password-wrap">
+            <input type="password" id="confirmPassword" placeholder="Re-enter your password" />
+            <button type="button" class="toggle-pw" onclick="togglePassword('confirmPassword')">👁</button>
+          </div>
+          <span class="field-error" id="confirmPassword-error"></span>
+        </div>
+
+        <div class="form-group">
+          <label>I am a</label>
+          <div class="role-selector">
+            <label class="role-option">
+              <input type="radio" name="role" value="Farmer" />
+              <span class="role-card">
+                <span class="role-icon">👨‍🌾</span>
+                <span class="role-label">Farmer</span>
+                <span class="role-desc">Book resources</span>
+              </span>
+            </label>
+            <label class="role-option">
+              <input type="radio" name="role" value="Owner" />
+              <span class="role-card">
+                <span class="role-icon">🏭</span>
+                <span class="role-label">Owner</span>
+                <span class="role-desc">List resources</span>
+              </span>
+            </label>
+          </div>
+          <span class="field-error" id="role-error"></span>
+        </div>
+
+        <button type="submit" class="btn-primary" id="submit-btn">
+          <span id="btn-text">Create Account</span>
+          <span id="btn-spinner" class="spinner hidden"></span>
+        </button>
+      </form>
+
+      <p class="form-footer">
+        Already have an account? <a href="/pages/login/login.html">Sign in</a>
+      </p>
+    </div>
+  </div>
+
+  <script src="../../shared/auth.js"></script>
+  <script src="../../shared/api.js"></script>
+  <script src="register.js"></script>
+</body>
+</html>

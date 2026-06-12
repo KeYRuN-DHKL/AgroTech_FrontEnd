@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Resources — AgroTech</title>
+  <link rel="stylesheet" href="../../shared/navbar.css" />
+  <link rel="stylesheet" href="ownerresource.css" />
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <main class="main">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">My Resources</h1>
+        <p class="page-subtitle">Manage your listed agricultural tools and equipment</p>
+      </div>
+      <button class="btn-primary" onclick="openModal()">＋ Add Resource</button>
+    </div>
+
+    <div id="loading" class="loading-state">
+      <div class="spinner"></div>
+      <p>Loading resources...</p>
+    </div>
+
+    <div id="error-state" class="empty-state hidden">
+      <span class="empty-icon">⚠️</span>
+      <p id="error-text">Failed to load resources.</p>
+      <button class="btn-primary" onclick="loadResources()">Try Again</button>
+    </div>
+
+    <div id="empty-state" class="empty-state hidden">
+      <span class="empty-icon">🚜</span>
+      <p>No resources listed yet. Add your first one!</p>
+    </div>
+
+    <div id="resources-grid" class="resources-grid hidden"></div>
+  </main>
+
+  <!-- Add / Edit Modal -->
+  <div id="resource-modal" class="modal-overlay hidden">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Add Resource</h3>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div id="form-error" class="alert alert-error hidden"></div>
+        <div id="form-success" class="alert alert-success hidden"></div>
+        <form id="resource-form" novalidate>
+          <input type="hidden" id="edit-id" value="" />
+
+          <div class="form-group">
+            <label>Resource Name</label>
+            <input type="text" id="res-name" placeholder="e.g. Tractor, Power Tiller..." maxlength="100" />
+            <span class="field-error" id="name-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label>Description</label>
+            <textarea id="res-desc" placeholder="Describe the tool, its condition, availability..." rows="3" maxlength="500"></textarea>
+            <span class="field-error" id="desc-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label>Image <span class="optional">(optional)</span></label>
+            <input type="file" id="res-image" accept="image/*" class="file-input" />
+            <div id="image-preview-wrap" class="image-preview-wrap hidden">
+              <img id="image-preview" src="" alt="Preview" class="image-preview" />
+              <button type="button" class="btn-remove-img" onclick="clearImage()">✕ Remove</button>
+            </div>
+          </div>
+
+          <div class="modal-actions">
+            <button type="button" class="btn-secondary" onclick="closeModal()">Cancel</button>
+            <button type="submit" class="btn-primary" id="save-btn">
+              <span id="save-btn-text">Save Resource</span>
+              <span id="save-spinner" class="spinner-sm hidden"></span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirm Modal -->
+  <div id="delete-modal" class="modal-overlay hidden">
+    <div class="modal modal-sm">
+      <div class="modal-header">
+        <h3 class="modal-title">Delete Resource</h3>
+        <button class="modal-close" onclick="closeDeleteModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="confirm-text">Are you sure you want to delete <strong id="delete-name"></strong>? This action cannot be undone.</p>
+        <div class="modal-actions">
+          <button class="btn-secondary" onclick="closeDeleteModal()">Cancel</button>
+          <button class="btn-danger" id="confirm-delete-btn" onclick="confirmDelete()">
+            <span id="delete-btn-text">Delete</span>
+            <span id="delete-spinner" class="spinner-sm hidden"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../shared/auth.js"></script>
+  <script src="../../shared/api.js"></script>
+  <script src="../../shared/navbar.js"></script>
+  <script src="ownerresource.js"></script>
+</body>
+</html>

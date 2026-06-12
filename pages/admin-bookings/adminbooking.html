@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>All Bookings — AgroTech Admin</title>
+  <link rel="stylesheet" href="../../shared/navbar.css" />
+  <link rel="stylesheet" href="adminbooking.css" />
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <main class="main">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">All Bookings</h1>
+        <p class="page-subtitle">Full platform booking overview</p>
+      </div>
+      <div class="search-wrap">
+        <input type="text" id="search-input" placeholder="🔍 Search farmer or resource..." oninput="filterBookings()" />
+      </div>
+    </div>
+
+    <div id="loading" class="loading-state">
+      <div class="spinner"></div>
+      <p>Loading bookings...</p>
+    </div>
+
+    <div id="error-state" class="empty-state hidden">
+      <span class="empty-icon">⚠️</span>
+      <p id="error-text">Failed to load bookings.</p>
+      <button class="btn-primary" onclick="loadBookings()">Try Again</button>
+    </div>
+
+    <div id="empty-state" class="empty-state hidden">
+      <span class="empty-icon">📅</span>
+      <p>No bookings found.</p>
+    </div>
+
+    <div id="table-wrap" class="table-wrap hidden">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Owner</th>
+            <th>Resource</th>
+            <th>Farmer</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="bookings-tbody"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- Delete Confirm Modal -->
+  <div id="delete-modal" class="modal-overlay hidden">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Delete Booking</h3>
+        <button class="modal-close" onclick="closeDeleteModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="confirm-text">Delete booking <strong id="delete-label"></strong>? This action cannot be undone.</p>
+        <div class="modal-actions">
+          <button class="btn-secondary" onclick="closeDeleteModal()">Cancel</button>
+          <button class="btn-danger" id="confirm-delete-btn" onclick="confirmDelete()">
+            <span id="delete-btn-text">Delete</span>
+            <span id="delete-spinner" class="spinner-sm hidden"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../shared/auth.js"></script>
+  <script src="../../shared/api.js"></script>
+  <script src="../../shared/navbar.js"></script>
+  <script src="adminbooking.js"></script>
+</body>
+</html>

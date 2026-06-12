@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login — AgroTech</title>
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+  <div class="login-wrapper">
+    <!-- Left Panel -->
+    <div class="login-panel-left">
+      <div class="brand">
+        <span class="brand-icon">🌾</span>
+        <h1 class="brand-name">AgroTech</h1>
+      </div>
+      <p class="brand-tagline">Connecting farmers with the tools they need to grow.</p>
+      <ul class="feature-list">
+        <li><span class="feat-icon">🚜</span> Browse agricultural equipment</li>
+        <li><span class="feat-icon">📅</span> Book resources instantly</li>
+        <li><span class="feat-icon">⭐</span> Review and rate tools</li>
+        <li><span class="feat-icon">📊</span> Track all your bookings</li>
+      </ul>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="login-panel-right">
+      <div class="form-card">
+        <h2 class="form-title">Welcome back</h2>
+        <p class="form-subtitle">Sign in to your AgroTech account</p>
+
+        <div id="error-msg" class="alert alert-error hidden"></div>
+        <div id="success-msg" class="alert alert-success hidden"></div>
+
+        <form id="login-form" novalidate>
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" id="email" placeholder="you@example.com" autocomplete="email" />
+            <span class="field-error" id="email-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="input-password-wrap">
+              <input type="password" id="password" placeholder="Enter your password" autocomplete="current-password" />
+              <button type="button" class="toggle-pw" onclick="togglePassword()">👁</button>
+            </div>
+            <span class="field-error" id="password-error"></span>
+          </div>
+
+          <button type="submit" class="btn-primary" id="submit-btn">
+            <span id="btn-text">Sign In</span>
+            <span id="btn-spinner" class="spinner hidden"></span>
+          </button>
+        </form>
+
+        <p class="form-footer">
+          Don't have an account? <a href="/pages/register/register.html">Create one</a>
+        </p>
+        <p class="form-footer">
+          <a href="/pages/forgot-password/forgot-password.html">Forgot your password?</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../shared/auth.js"></script>
+  <script src="../../shared/api.js"></script>
+  <script src="login.js"></script>
+</body>
+</html>

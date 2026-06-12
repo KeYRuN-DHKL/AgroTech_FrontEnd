@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard — AgroTech</title>
+  <link rel="stylesheet" href="../../shared/navbar.css" />
+  <link rel="stylesheet" href="dashboard.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <main class="main">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Dashboard</h1>
+        <p class="page-subtitle">Platform overview and analytics</p>
+      </div>
+      <button class="btn-primary" onclick="loadDashboard()">↻ Refresh</button>
+    </div>
+
+    <div id="loading" class="loading-state">
+      <div class="spinner"></div>
+      <p>Loading dashboard...</p>
+    </div>
+
+    <div id="error-state" class="empty-state hidden">
+      <span class="empty-icon">⚠️</span>
+      <p id="error-text">Failed to load dashboard.</p>
+      <button class="btn-primary" onclick="loadDashboard()">Try Again</button>
+    </div>
+
+    <div id="dashboard-content" class="hidden">
+      <!-- ─── Stat Cards ─── -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">👥</div>
+          <div class="stat-info">
+            <div class="stat-value" id="stat-users">—</div>
+            <div class="stat-label">Total Users</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">👨‍🌾</div>
+          <div class="stat-info">
+            <div class="stat-value" id="stat-farmers">—</div>
+            <div class="stat-label">Farmers</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🏭</div>
+          <div class="stat-info">
+            <div class="stat-value" id="stat-owners">—</div>
+            <div class="stat-label">Owners</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🚜</div>
+          <div class="stat-info">
+            <div class="stat-value" id="stat-resources">—</div>
+            <div class="stat-label">Resources</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">📅</div>
+          <div class="stat-info">
+            <div class="stat-value" id="stat-bookings">—</div>
+            <div class="stat-label">Total Bookings</div>
+          </div>
+        </div>
+        <div class="stat-card stat-pending">
+          <div class="stat-icon">⏳</div>
+          <div class="stat-info">
+            <div class="stat-value" id="stat-pending">—</div>
+            <div class="stat-label">Pending</div>
+          </div>
+        </div>
+        <div class="stat-card stat-approved">
+          <div class="stat-icon">✅</div>
+          <div class="stat-info">
+            <div class="stat-value" id="stat-approved">—</div>
+            <div class="stat-label">Approved</div>
+          </div>
+        </div>
+        <div class="stat-card stat-rejected">
+          <div class="stat-icon">✕</div>
+          <div class="stat-info">
+            <div class="stat-value" id="stat-rejected">—</div>
+            <div class="stat-label">Rejected</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── Charts ─── -->
+      <div class="charts-grid">
+        <div class="chart-card">
+          <h3 class="chart-title">Monthly User Growth</h3>
+          <div class="chart-wrap">
+            <canvas id="chart-users"></canvas>
+          </div>
+        </div>
+        <div class="chart-card">
+          <h3 class="chart-title">Monthly Bookings</h3>
+          <div class="chart-wrap">
+            <canvas id="chart-bookings"></canvas>
+          </div>
+        </div>
+        <div class="chart-card">
+          <h3 class="chart-title">Monthly Resources Added</h3>
+          <div class="chart-wrap">
+            <canvas id="chart-resources"></canvas>
+          </div>
+        </div>
+        <div class="chart-card">
+          <h3 class="chart-title">Booking Status Breakdown</h3>
+          <div class="chart-wrap chart-wrap-sm">
+            <canvas id="chart-status"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="../../shared/auth.js"></script>
+  <script src="../../shared/api.js"></script>
+  <script src="../../shared/navbar.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>

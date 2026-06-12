@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pending Bookings — AgroTech</title>
+  <link rel="stylesheet" href="../../shared/navbar.css" />
+  <link rel="stylesheet" href="ownerbooking.css" />
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <main class="main">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Pending Bookings</h1>
+        <p class="page-subtitle">Review and respond to farmer booking requests</p>
+      </div>
+      <div id="pending-count-badge" class="count-badge hidden"></div>
+    </div>
+
+    <div id="loading" class="loading-state">
+      <div class="spinner"></div>
+      <p>Loading booking requests...</p>
+    </div>
+
+    <div id="error-state" class="empty-state hidden">
+      <span class="empty-icon">⚠️</span>
+      <p id="error-text">Failed to load bookings.</p>
+      <button class="btn-primary" onclick="loadPendingBookings()">Try Again</button>
+    </div>
+
+    <div id="empty-state" class="empty-state hidden">
+      <span class="empty-icon">✅</span>
+      <p>No pending bookings. You're all caught up!</p>
+    </div>
+
+    <div id="bookings-list" class="bookings-list hidden"></div>
+  </main>
+
+  <script src="../../shared/auth.js"></script>
+  <script src="../../shared/api.js"></script>
+  <script src="../../shared/navbar.js"></script>
+  <script src="ownerbooking.js"></script>
+</body>
+</html>
